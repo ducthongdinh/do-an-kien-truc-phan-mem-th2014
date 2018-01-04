@@ -1,0 +1,81 @@
+<%= cloudinary_js_config %>
+  <%= form_for(@auction) do |f| %>
+    <% if @auction.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@auction.errors.count, "error") %> prohibited this auction from being saved:</h2>
+        <ul>
+          <% @auction.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+            <% end %>
+        </ul>
+      </div>
+      <% end %>
+        <!-- params.require(:product).permit(:name, :description,:buy_now_price,:starting_price) -->
+        <div class="field">
+          <%= f.label :auction_price %>
+            <br>
+            <%= f.text_field :auction_price %>
+        </div>
+        <div class="field">
+          <%= f.label :max_price %>
+            <br>
+            <%= f.text_field :max_price %>
+        </div>
+        <div class="field">
+          <p>
+            <%= f.label :start_time %>
+              <br />
+              <%= f.datetime_select :start_time, :start_year=>Date.today.year %>
+          </p>
+        </div>
+        <div class="field">
+          <p>
+            <%= f.label :end_time %>
+              <br />
+              <%= f.datetime_select :end_time, :start_year=>Date.today.year %>
+          </p>
+        </div>
+
+        <div class="field">
+          <%= f.label :auction_price %>
+            <br>
+            <%= f.text_field :auction_price %>
+        </div>
+
+        <%= f.fields_for( :product , remote: true) do |l| %>
+          <div class="field">
+            <%= l.label :name %>
+              <br>
+              <%= l.text_field :name %>
+          </div>
+          <div class="field">
+            <%= l.label :description %>
+              <br>
+              <%= l.text_field :description %>
+          </div>
+          <div class="field">
+            <%= l.label :buy_now_price %>
+              <br>
+              <%= l.text_field :buy_now_price %>
+          </div>
+          <div class="field">
+            <%= l.label :starting_price %>
+              <br>
+              <%= l.text_field :starting_price %>
+          </div>
+          <div class="field">
+            <%= l.label :resources %>
+              <br>
+              <%= l.file_field :resources, multiple: true %>
+          </div>
+          <% end %>
+          
+
+
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+            <% end %>

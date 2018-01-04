@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: hcmu
+  api_key: '831762233768549'
+  api_secret: bXRZoqlvjl2OPNWqmPOD2oHFmp4
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: hcmu
+  api_key: '831762233768549'
+  api_secret: bXRZoqlvjl2OPNWqmPOD2oHFmp4
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: hcmu
+  api_key: '831762233768549'
+  api_secret: bXRZoqlvjl2OPNWqmPOD2oHFmp4
+  enhance_image_tag: true
+  static_image_support: false

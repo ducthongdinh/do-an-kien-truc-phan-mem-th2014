@@ -1,0 +1,72 @@
+<%= cloudinary_js_config %>
+  <%= form_for(@product) do |f| %>
+    <% if @product.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@product.errors.count, "error") %> prohibited this auction from being saved:</h2>
+        <ul>
+          <% @product.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+            <% end %>
+        </ul>
+      </div>
+      <% end %>
+        <div class="field">
+          <%= f.label :name %>
+            <br>
+            <%= f.text_field :name %>
+        </div>
+        
+        <div class="field">
+          <%= f.label :resources %>
+            <br>
+            <%= f.file_field :resources, multiple: true %>
+        </div>
+        <div>
+          <% if @product.resources.any? %>
+            Delete resources
+            <br />
+            <br />
+            <%= check_box_tag "select_all" %> Select all
+              <br />
+              <% @product.resources.each do |resource| %>
+                <%= check_box_tag resource.id, "delete" %>
+                  <%= cl_image_tag(resource.url.thumb.url) %>
+                    <br />
+                    <% end %>
+                      <% end %>
+        </div>
+        <div class="actions">
+          <%= f.submit data: {confirm: "Are you sure?"} %>
+        </div>
+        <% end %>
+
+          <script type="text/javascript">
+            $(document).ready(function () {
+              $('#select_all').click(function (event) {  //on click 
+                if (this.checked) { // check select status
+                  $('form input:checkbox').each(function () { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"               
+                  });
+                } else {
+                  $('form input:checkbox').each(function () { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+                  });
+                }
+              });
+              $('.cloudinary-fileupload').cloudinary_fileupload().on('cloudinarydone', function (e, data) {
+                $('#preview_images').append($.cloudinary.image(data.result.public_id, { width: 50, height: 50, crop: "fill" }));
+              })
+                .on('cloudinaryprogressall', function (e, data) {
+                  $('#progress_bar_box').show();
+                  var percents = Math.round((data.loaded * 100.0) / data.total) + '%'
+                  $('#progress_percents').text(percents)
+                  $('#progress_bar').css('width', percents);
+                })
+                .on('fileuploadstop', function () {
+                  $('#progress_bar_box').hide();
+                });
+            });
+          </script>

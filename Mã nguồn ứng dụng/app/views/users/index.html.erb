@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Home</a>
+        </li>
+        <li class="breadcrumb-item active">User management</li>
+      </ol>
+       <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i>ADMIN 
+          <a href="/users/sign_up"><button class="btn btn-primary float-right">New admin</button></a>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover"  width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Sanbox account</th>
+                  <th>Email</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+          
+              <tbody>
+                 <% @admins.each do |admin| %>
+                <tr>
+                  <td><%= admin.full_name %></td>
+                  <td><%= admin.address %></td>
+                  <td><%= admin.phone %></td>
+                  <td><%= admin.email %></td>
+                  <th>
+                    <% if admin.role == -2 %>
+                    <form method="post" action="users/block-user/id?id=<%= admin.id %>" class="button_to">
+                          <input class=" btn btn-danger" value="Unblock" type="submit" />
+                      </form>
+                    <% end %>
+
+                    <% if admin.role == 2 %>
+                    <form method="post" action="users/block-admin/id?id=<%= admin.id %>" class="button_to">
+                          <input class=" btn btn-danger" value="Block" type="submit" />
+                          <a href="<%= edit_user_path(admin) %>"><button type="button" class="btn btn-success">Edit</button></a>
+                    </form>   
+                    <% end %>
+                   
+                  </th>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i>USER
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+            <% if flash[:notice] %>
+              <div id="alert-message" class="text-center notice alert alert-success"><%= flash[:notice] %></div>
+            <% end %>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Sanbox account</th>
+                  <th>Email</th>
+                  <th style="width:15%">Action</th>
+                </tr>
+              </thead>
+          
+              <tbody>
+                  <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.full_name %></td>
+                  <td><%= user.address %></td>
+                  <td><%= user.phone %></td>
+                  <td><%= user.email %></td>
+                  <th>
+                    <% if user.role == -1 %> 
+                      <form method="post" action="users/unblock-user/id?id=<%= user.id %>" class="button_to">
+                          <input class=" btn btn-danger" value="Unblock" type="submit" />
+                      </form>
+                    <% end %>
+                    <% if user.role == 1 %>
+                    <span>
+                    <form method="post" action="users/block-user/id?id=<%= user.id %>" class="button_to">
+                          <input class=" btn btn-danger" value="Block" type="submit" />
+                          <a href="<%= edit_user_path(user) %>"><button type="button" class="btn btn-success">Edit</button></a>
+                    </form>
+                    </span>
+                    <% end %>
+                  </th>
+                  <% end %>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADMIN -->
+
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © Your Website 2017</small>
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+  </div>
+</body>
+
+</html>

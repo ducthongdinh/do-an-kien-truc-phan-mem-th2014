@@ -1,0 +1,23 @@
+                    <!--       <%= button_to "Unblock", {:controller => :users,:action => 'unblockUser', :id => user.id }, :method => :post, :class => "btn btn-danger unblock" :remote => true %>
+                          <% end %> -->
+                           <!--       <%= button_to "Unblock", {:controller => :users,:action => 'unblockUser', :id => user.id }, :method => :post, :class => "btn btn-danger unblock" :remote => true %>
+                          <% end %> -->
+
+
+
+
+<script>
+                            $('.unblock').click(function() {
+                              $.ajax({
+                                url: '/users/unblock-user/' + <%= user.id %>;
+                                method: 'POST',
+                                data: <%= user.id %>,
+                                success: function(response) {
+                                  alert(response);
+                                },
+                                error : function(error) {
+                                  alert ("That bai roi!!!");
+                                }
+                              });
+                            });
+                          </script>

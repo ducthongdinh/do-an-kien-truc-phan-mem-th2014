@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing auction</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @auctions.each do |auction| %>
+      <tr>
+        <td><%= cl_image_tag(auction.photos.first.image.thumb.url) if auction.photos.any? %></td>
+        <td><%= auction.title %></td>
+        <td><%= link_to 'Show', auction %></td>
+        <td><%= link_to 'Edit (Server-side)', edit_auction_path(auction) %></td>
+        <td><%= link_to 'Edit (Client-side)', edit_auction_path(auction, direct_mode: true) %></td>
+        <td><%= link_to 'Destroy', auction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New auction (Server-side upload)', new_auction_path %><br />
+<%= link_to 'New auction (Client-side upload)', new_auction_path(direct_mode: true) %>

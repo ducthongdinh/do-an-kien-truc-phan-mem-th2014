@@ -1,0 +1,2 @@
+class DataTableUsing < ApplicationRecord
+end

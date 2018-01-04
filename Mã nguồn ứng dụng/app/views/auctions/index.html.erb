@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+          
+<h1>Listing auction</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @auctions.each do |auction| %>
+      <tr>
+        <td>
+          <%= auction.max_price%>
+        </td>
+        
+        <td><%= auction.id %></td>
+        <td><%= link_to 'Show', auction %></td>
+        <% if is_owner(auction)%>
+        <td><%= link_to 'Edit', edit_auction_path(auction) %></td>
+        
+        <td><%= link_to 'Destroy', auction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New auction', new_auction_path %><br />

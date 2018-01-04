@@ -1,0 +1,39 @@
+
+<%= form_with model: @user, local: true, method: :patch do |f| %>
+    <%= f.select :role, options_for_select([["User", 1], ["Admin", 2]]) %>
+    <%=  f.submit 'Update privilege', :class => 'btn btn-primary' %>
+<%end%>
+
+<body class="fixed-nav sticky-footer" id="page-top">
+  <div class="content-wrapper">
+    <div class="container-fluid">
+<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+    <tr>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Sanbox account</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <% if @user.role == 1 %> 
+        <td>User</td>
+        <% end %>
+        <% if @user.role == 2 %> 
+        <td>Admin</td>
+        <% end %>
+        
+        <td><%= @user.full_name %></td>
+        <td><%= @user.address %></td>
+        <td><%= @user.phone %></td>
+        <td><%= @user.email %></td>
+    </tbody>
+</table>
+</div>
+</div>
+</body>

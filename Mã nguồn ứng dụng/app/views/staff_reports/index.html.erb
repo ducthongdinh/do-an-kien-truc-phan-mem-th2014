@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<h1>Staff Report</h1>
+
+<div class="container">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Revenue Report
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="<%= staff_reports_path %>/revenue/all" class="dropdown-item all">All</a></li>
+      <li><a href="<%= staff_reports_path %>/revenue/service" class="dropdown-item service">Service</a></li>
+      <li><a href="<%= staff_reports_path %>/revenue/commission" class="dropdown-item commission">Commission</a></li>
+    </ul>
+  </div>
+  <br>
+  <br>
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Profit Report
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="<%= staff_reports_path %>/profit/all" class="dropdown-item all">All</a></li>
+      <li><a href="<%= staff_reports_path %>/profit/service" class="dropdown-item service">Income</a></li>
+      <li><a href="<%= staff_reports_path %>/profit/service" class="dropdown-item service">Expense</a></li>
+    </ul>
+  </div>
+  <!-- <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Auction Report
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item auction all">All</a></li>
+      <li><a class="dropdown-item auction day">Day</a></li>
+      <li><a class="dropdown-item auction month">Month</a></li>
+      <li><a class="dropdown-item auction year">Year</a></li>
+    </ul>
+  </div>
+  <br>
+  <br>
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Marketable Product Report
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item marketable-product all">All</a></li>
+      <li><a class="dropdown-item marketable-product day">Day</a></li>
+      <li><a class="dropdown-item marketable-product month">Month</a></li>
+      <li><a class="dropdown-item marketable-product year">Year</a></li>
+    </ul>
+  </div> -->
+  <br>
+  <br>
+  <!-- <h2>Modal Example</h2>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Header</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body modal-form">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css"
+        rel="stylesheet" type="text/css" />
+<!-- <script>
+$(document).ready(function(){
+  
+  $('.dropdown-item').on("click", function(e){
+  	
+  	var arr = $(this).attr('class').split(" ");
+
+  	var modalHeader = arr[1] + " report: " + arr[2];
+
+  	$('.modal-title').html(modalHeader);
+
+    var modalFormContent = "<form " + "action='/staff_reports/" + arr[1] + "/" + arr[2] + "' method='get'>";
+
+    if (arr[2] == "day")
+      modalFormContent += "<input name='timeinput' type='date'/>";
+    else if (arr[2] == "month")
+      modalFormContent += "<input name='month' type='number' step='1' min='1' max='12' value='1'/>/<input name='year' type='number' step='1' min='2010' value='2017'/>";
+    else if (arr[2] == "year")
+      modalFormContent += "<input name='year' type='number' step='1' min='2010'/>";
+
+    modalFormContent += "<input type='submit' value='OK'/></form>"
+
+    $('.modal-form').html(modalFormContent);
+
+  	$('#myModal').modal('show');
+  });
+  // $('.dropdown-submenu a.test').on("click", function(e){
+  //   $(this).next('ul').toggle();
+  //   e.stopPropagation();
+  //   e.preventDefault();
+  // });
+});
+</script> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

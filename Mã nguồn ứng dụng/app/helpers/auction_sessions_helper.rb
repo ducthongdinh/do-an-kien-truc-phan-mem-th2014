@@ -1,0 +1,2 @@
+module AuctionSessionsHelper
+end
